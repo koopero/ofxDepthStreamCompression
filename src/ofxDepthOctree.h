@@ -23,13 +23,13 @@ class ofxDepthOctree;
 class ofxDepthVoxel{
 public:
 	float x, y, z, side;
-	vector<size_t> indices;
+	std::vector<size_t> indices;
 	ofxDepthOctree * parent;
 	void allocate(int levels);
 	bool inside(const ofVec3f & v);
 	void divide(int levels);
 	void fillMesh(ofMesh & mesh, int level);
-	vector<ofxDepthVoxel> divisions;
+	std::vector<ofxDepthVoxel> divisions;
 	void serialize(ofBuffer & repr,int level);
 	ExternalBuffer deserialize(const ExternalBuffer & repr, int levels);
 
@@ -61,7 +61,7 @@ private:
 	ofxDepthVoxel octree;
 	float pixel_size;
 	float distance;
-	vector<ofVec3f> pc;
+	std::vector<ofVec3f> pc;
 	float factor;
 	friend class ofxDepthVoxel;
 };

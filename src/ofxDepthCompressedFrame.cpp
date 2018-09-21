@@ -21,8 +21,8 @@ void ofxDepthCompressedFrame::allocate(int w, int h, bool isKeyFrame){
 }
 
 void ofxDepthCompressedFrame::setRegistration(float pixel_size, float distance){
-	compressed[3] = CLAMP(pixel_size*10000,numeric_limits<short>::min(),numeric_limits<short>::max());
-	compressed[4] = CLAMP(distance*10,numeric_limits<short>::min(),numeric_limits<short>::max());
+    compressed[3] = CLAMP(pixel_size*10000,std::numeric_limits<short>::min(),std::numeric_limits<short>::max());
+    compressed[4] = CLAMP(distance*10,std::numeric_limits<short>::min(),std::numeric_limits<short>::max());
 }
 
 float ofxDepthCompressedFrame::getPixelSize(){
@@ -66,7 +66,7 @@ void ofxDepthCompressedFrame::fromCompressedData(const char* data, size_t len){
 	}
 }
 
-vector<ofxDepthCompressedFrame::DiffPixel> & ofxDepthCompressedFrame::getUncompressedDiff(){
+std::vector<ofxDepthCompressedFrame::DiffPixel> & ofxDepthCompressedFrame::getUncompressedDiff(){
 	return uncompressedDiff;
 }
 
@@ -87,7 +87,7 @@ bool ofxDepthCompressedFrame::isKeyFrame() const{
 	return compressed[0];
 }
 
-const vector<short> & ofxDepthCompressedFrame::compressedData(){
+const std::vector<short> & ofxDepthCompressedFrame::compressedData(){
 	if(compressedDirty){
 		compressed.resize(getPixels().size()*2+5);
 		if(!isKeyFrame()){

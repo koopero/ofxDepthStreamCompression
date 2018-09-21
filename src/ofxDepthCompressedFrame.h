@@ -9,6 +9,7 @@
 #define OFXDEPTHCOMPRESSEDFRAME_H_
 
 #include "ofPixels.h"
+#include "ofMathConstants.h"
 
 class ofxDepthCompressedFrame {
 	struct DiffPixel{
@@ -25,13 +26,13 @@ public:
 	void setIsKeyFrame(bool isKeyFrame);
 	bool isKeyFrame() const;
 
-	const vector<short> & compressedData();
+	const std::vector<short> & compressedData();
 	void fromCompressedData(const char* data, size_t len);
-	vector<DiffPixel> & getUncompressedDiff();
+	std::vector<DiffPixel> & getUncompressedDiff();
 private:
 	ofPixels_<short> pixels;
-	vector<short> compressed;
-	vector<DiffPixel> uncompressedDiff;
+	std::vector<short> compressed;
+	std::vector<DiffPixel> uncompressedDiff;
 	bool compressedDirty;
 	size_t compressedBytes;
 };

@@ -47,7 +47,7 @@ static size_t ofx_compress(const unsigned char* in, size_t size_in, unsigned cha
 }
 
 template<typename T>
-static void ofx_uncompress(const unsigned char* in, size_t size_in, vector<T> & out){
+static void ofx_uncompress(const unsigned char* in, size_t size_in, std::vector<T> & out){
 	z_stream strm;
 	strm_init_inflate (& strm);
 	strm.next_in = (unsigned char*)in;
@@ -89,7 +89,7 @@ static size_t ofx_compress(const unsigned char* in, size_t size_in, unsigned cha
 }
 
 template<typename T>
-static void ofx_uncompress(const unsigned char* in, size_t size_in, vector<T> & out){
+static void ofx_uncompress(const unsigned char* in, size_t size_in, std::vector<T> & out){
 	size_t uncompressed_len;
 	snappy::GetUncompressedLength((char*)in,size_in,&uncompressed_len);
 	out.resize(uncompressed_len/sizeof(T));
